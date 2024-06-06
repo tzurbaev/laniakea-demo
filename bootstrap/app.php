@@ -29,8 +29,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // Create fresh middleware priority manager with default middleware priority.
         $manager = MiddlewarePriorityManager::withDefaults($middleware);
 
-        // Place SetApiVersion middleware before SubstituteBindings middleware.
-        $manager->before(SubstituteBindings::class, SetApiVersion::class);
+        // Place SetResourceRequest and SetApiVersion middleware before SubstituteBindings middleware.
+        $manager->before(SubstituteBindings::class, [SetResourceRequest::class, SetApiVersion::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         /** @var ExceptionRenderer $renderer */

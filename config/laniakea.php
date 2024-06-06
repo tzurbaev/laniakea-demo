@@ -1,9 +1,11 @@
 <?php
 
+use App\Resources\Registrars\AuthorsResourceRegistrar;
 use App\Resources\Registrars\GenresResourceRegistrar;
 
 return [
     'registrars' => [
+        AuthorsResourceRegistrar::class,
         GenresResourceRegistrar::class,
     ],
 

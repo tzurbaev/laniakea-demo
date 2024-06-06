@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorsApiController;
 use App\Http\Controllers\GenresApiController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,12 @@ Route::group(['middleware' => ['laniakea.request'], 'as' => 'api.'], function ()
             Route::get('/', [GenresApiController::class, 'index'])->name('index');
             Route::post('/', [GenresApiController::class, 'store'])->name('store');
             Route::get('/{genre}', [GenresApiController::class, 'show'])->name('show');
+        });
+
+        Route::group(['prefix' => '/authors', 'as' => 'authors.'], function () {
+            Route::get('/', [AuthorsApiController::class, 'index'])->name('index');
+            Route::post('/', [AuthorsApiController::class, 'store'])->name('store');
+            Route::get('/{author}', [AuthorsApiController::class, 'show'])->name('show');
         });
     });
 });
