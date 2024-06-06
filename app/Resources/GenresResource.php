@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Resources;
 
+use App\Resources\Filters\SearchFilter;
 use Laniakea\Resources\Interfaces\ResourceFilterInterface;
 use Laniakea\Resources\Interfaces\ResourceInterface;
 use Laniakea\Resources\Interfaces\ResourceSorterInterface;
@@ -18,7 +19,9 @@ class GenresResource implements ResourceInterface
      */
     public function getFilters(): array
     {
-        return [];
+        return [
+            'search' => new SearchFilter(['name']),
+        ];
     }
 
     /**

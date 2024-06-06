@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Resources;
 
+use App\Resources\Filters\BooksAuthorFilter;
+use App\Resources\Filters\BooksGenreFilter;
+use App\Resources\Filters\SearchFilter;
 use Laniakea\Resources\Interfaces\ResourceFilterInterface;
 use Laniakea\Resources\Interfaces\ResourceInterface;
 use Laniakea\Resources\Interfaces\ResourceSorterInterface;
@@ -18,7 +21,11 @@ class BooksResource implements ResourceInterface
      */
     public function getFilters(): array
     {
-        return [];
+        return [
+            'search' => new SearchFilter(['isbn', 'title']),
+            'author_id' => new BooksAuthorFilter(),
+            'genre_id' => new BooksGenreFilter(),
+        ];
     }
 
     /**
