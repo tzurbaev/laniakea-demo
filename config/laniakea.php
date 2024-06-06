@@ -1,8 +1,10 @@
 <?php
 
+use App\Resources\Registrars\GenresResourceRegistrar;
+
 return [
     'registrars' => [
-        // List your resource registrars here
+        GenresResourceRegistrar::class,
     ],
 
     'resources' => [
