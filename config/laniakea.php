@@ -1,11 +1,13 @@
 <?php
 
 use App\Resources\Registrars\AuthorsResourceRegistrar;
+use App\Resources\Registrars\BooksResourceRegistrar;
 use App\Resources\Registrars\GenresResourceRegistrar;
 
 return [
     'registrars' => [
         AuthorsResourceRegistrar::class,
+        BooksResourceRegistrar::class,
         GenresResourceRegistrar::class,
     ],
 
