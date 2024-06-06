@@ -32,7 +32,6 @@ class GenresResource implements ResourceInterface
     public function getInclusions(): array
     {
         return [
-            'authors' => ['authors'],
             'books' => ['books'],
         ];
     }

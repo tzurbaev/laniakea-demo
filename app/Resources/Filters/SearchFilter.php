@@ -17,6 +17,10 @@ readonly class SearchFilter implements ResourceFilterInterface
 
     public function apply(RepositoryQueryBuilderInterface $query, mixed $value, array $values): void
     {
+        if (empty($value)) {
+            return;
+        }
+
         $query->addCriteria([
             new SearchCriterion($this->columns, $value),
         ]);

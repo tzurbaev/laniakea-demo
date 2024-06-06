@@ -34,7 +34,6 @@ class AuthorsResource implements ResourceInterface
         return [
             'books' => ['books'],
             'books.genres' => ['books.genres'],
-            'genres' => ['genres'],
         ];
     }
 
