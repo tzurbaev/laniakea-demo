@@ -9,6 +9,7 @@ use App\Http\Requests\Authors\StoreAuthorRequest;
 use App\Models\Author;
 use App\Repositories\AuthorsRepository;
 use App\Resources\AuthorsResource;
+use App\Transformers\Authors\AuthorTransformer;
 use Illuminate\Http\JsonResponse;
 use Laniakea\Resources\Interfaces\ResourceManagerInterface;
 use Laniakea\Resources\Interfaces\ResourceRequestInterface;
@@ -23,18 +24,22 @@ class AuthorsApiController
             new AuthorsRepository(),
         );
 
-        return response()->json($paginator);
+        return fractal($paginator, new AuthorTransformer())
+            ->parseIncludes($request->getInclusions()) // Make sure to pass list of inclusions to the fractal transformer.
+            ->respond();
     }
 
     public function store(StoreAuthorRequest $request, CreateAuthor $action): JsonResponse
     {
         $author = $action->create($request);
 
-        return response()->json($author);
+        return fractal($author, new AuthorTransformer())->respond();
     }
 
-    public function show(Author $author): JsonResponse
+    public function show(ResourceRequestInterface $request, Author $author): JsonResponse
     {
-        return response()->json($author);
+        return fractal($author, new AuthorTransformer())
+            ->parseIncludes($request->getInclusions()) // Make sure to pass list of inclusions to the fractal transformer.
+            ->respond();
     }
 }

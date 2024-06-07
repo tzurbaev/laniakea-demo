@@ -18,10 +18,10 @@
         <div class="p-4 flex flex-col flex-1">
           <span class="mb-2">
             <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-              {{ book.genre.name }}
+              {{ book.genre.data.name }}
             </span>
           </span>
-          <p class="text-sm"><strong>{{ book.author.name }}</strong></p>
+          <p class="text-sm"><strong>{{ book.author.data.name }}</strong></p>
           <h2 class="mb-2 text-3xl font-extrabold">
             <a :href="`/books/${book.isbn}/edit`" class="underline">
               {{ book.title }}

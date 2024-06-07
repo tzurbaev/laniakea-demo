@@ -11,6 +11,7 @@ use App\Http\Requests\Books\UpdateBookRequest;
 use App\Models\Book;
 use App\Repositories\BooksRepository;
 use App\Resources\BooksResource;
+use App\Transformers\Books\BookTransformer;
 use Illuminate\Http\JsonResponse;
 use Laniakea\Resources\Interfaces\ResourceManagerInterface;
 use Laniakea\Resources\Interfaces\ResourceRequestInterface;
@@ -25,25 +26,28 @@ class BooksApiController
             new BooksRepository(),
         );
 
-        return response()->json($paginator);
+        return fractal($paginator, new BookTransformer())
+            ->parseIncludes($request->getInclusions()) // Make sure to pass list of inclusions to the fractal transformer.
+            ->respond();
     }
 
     public function store(StoreBookRequest $request, CreateBook $action): JsonResponse
     {
         $book = $action->create($request);
 
-        return response()->json($book);
+        return fractal($book, new BookTransformer())->respond();
     }
 
-    public function show(Book $book): JsonResponse
+    public function show(ResourceRequestInterface $request, Book $book): JsonResponse
     {
-        return response()->json($book);
+        return fractal($book, new BookTransformer())
+            ->parseIncludes($request->getInclusions()) // Make sure to pass list of inclusions to the fractal transformer.
+            ->respond();
     }
 
     public function update(UpdateBookRequest $request, UpdateBook $action): JsonResponse
     {
-        return response()->json(
-            $action->update($request, $request->getBook()),
-        );
+        return fractal($action->update($request, $request->getBook()), new BookTransformer())
+            ->respond();
     }
 }
