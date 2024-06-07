@@ -4,27 +4,19 @@ declare(strict_types=1);
 
 namespace App\Actions\Books;
 
-use App\Http\Requests\Books\StoreBookRequest;
+use App\Interfaces\Books\StoreBookRequestInterface;
 use App\Models\Book;
-use App\Repositories\BooksRepository;
 use App\Settings\BookSetting;
-use Laniakea\Settings\Interfaces\SettingsValuesInterface;
 
-readonly class CreateBook
+readonly class CreateBook extends AbstractBookAction
 {
-    public function __construct(
-        private BooksRepository $repository,
-        private SettingsValuesInterface $settingsValues,
-    ) {
-        //
-    }
-
-    public function create(StoreBookRequest $request): Book
+    public function create(StoreBookRequestInterface $request): Book
     {
         return $this->repository->create([
             'author_id' => $request->getAuthorId(),
-            'genre_id' => $request->getGenreId(),
+            'genre_id' => $this->getGenreId($request),
             'isbn' => $request->getIsbn(),
+            'release_year' => $request->getReleaseYear(),
             'title' => $request->getTitle(),
             'synopsis' => $request->getSynopsis(),
             'cover_url' => $request->getCoverUrl(),

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Transformers\Authors;
 
 use App\Interfaces\Authors\AuthorTransformerInterface;
+use App\Interfaces\Books\BookTransformerInterface;
 use App\Models\Author;
-use App\Transformers\Books\BookTransformer;
 use League\Fractal\TransformerAbstract;
 
 class AuthorTransformer extends TransformerAbstract implements AuthorTransformerInterface
@@ -31,6 +31,6 @@ class AuthorTransformer extends TransformerAbstract implements AuthorTransformer
             return $this->primitive([]);
         }
 
-        return $this->collection($author->books, new BookTransformer());
+        return $this->collection($author->books, app(BookTransformerInterface::class));
     }
 }

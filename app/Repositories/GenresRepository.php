@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Genre;
 use Laniakea\Repositories\AbstractRepository;
+use Laniakea\Repositories\Criteria\ExactValueCriterion;
 use Laniakea\Repositories\Interfaces\RepositoryQueryBuilderInterface;
 
 class GenresRepository extends AbstractRepository
@@ -18,6 +19,17 @@ class GenresRepository extends AbstractRepository
     protected function getModel(): string
     {
         return Genre::class;
+    }
+
+    public function getGenreBySlug(?string $slug): ?Genre
+    {
+        if (is_null($slug)) {
+            return null;
+        }
+
+        return $this->first(fn (RepositoryQueryBuilderInterface $query) => $query->addCriteria([
+            new ExactValueCriterion('slug', $slug),
+        ]));
     }
 
     /**

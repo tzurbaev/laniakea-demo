@@ -4,26 +4,18 @@ declare(strict_types=1);
 
 namespace App\Actions\Books;
 
-use App\Http\Requests\Books\UpdateBookRequest;
+use App\Interfaces\Books\UpdateBookRequestInterface;
 use App\Models\Book;
-use App\Repositories\BooksRepository;
-use Laniakea\Settings\Interfaces\SettingsValuesInterface;
 
-readonly class UpdateBook
+readonly class UpdateBook extends AbstractBookAction
 {
-    public function __construct(
-        private BooksRepository $repository,
-        private SettingsValuesInterface $settingsValues,
-    ) {
-        //
-    }
-
-    public function update(UpdateBookRequest $request, Book $book): Book
+    public function update(UpdateBookRequestInterface $request, Book $book): Book
     {
         return $this->repository->update($book->id, [
             'author_id' => $request->getAuthorId(),
-            'genre_id' => $request->getGenreId(),
+            'genre_id' => $this->getGenreId($request),
             'isbn' => $request->getIsbn(),
+            'release_year' => $request->getReleaseYear(),
             'title' => $request->getTitle(),
             'synopsis' => $request->getSynopsis(),
             'cover_url' => $request->getCoverUrl(),

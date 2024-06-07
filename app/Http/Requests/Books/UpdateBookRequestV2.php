@@ -7,7 +7,7 @@ namespace App\Http\Requests\Books;
 use App\Interfaces\Books\UpdateBookRequestInterface;
 use App\Models\Book;
 
-class UpdateBookRequest extends StoreBookRequest implements UpdateBookRequestInterface
+class UpdateBookRequestV2 extends StoreBookRequestV2 implements UpdateBookRequestInterface
 {
     public function getBook(): Book
     {

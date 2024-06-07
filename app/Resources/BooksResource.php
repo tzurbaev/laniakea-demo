@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Resources;
 
+use App\Interfaces\Books\BooksGenreFilterInterface;
 use App\Repositories\Criteria\Books\BookItemCriterion;
 use App\Resources\Filters\BooksAuthorFilter;
-use App\Resources\Filters\BooksGenreFilter;
 use App\Resources\Filters\SearchFilter;
 use Laniakea\Repositories\Interfaces\RepositoryCriterionInterface;
 use Laniakea\Resources\Interfaces\HasItemCriterionInterface;
@@ -39,7 +39,10 @@ class BooksResource implements ResourceInterface, HasItemCriterionInterface
         return [
             'search' => new SearchFilter(['isbn', 'title']),
             'author_id' => new BooksAuthorFilter(),
-            'genre_id' => new BooksGenreFilter(),
+
+            // Genre filter depends on current API version,
+            // so we're setting interface's class name instead of concrete implementation
+            'genre_id' => BooksGenreFilterInterface::class,
         ];
     }
 

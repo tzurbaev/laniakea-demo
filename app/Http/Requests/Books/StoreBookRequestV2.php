@@ -6,19 +6,24 @@ namespace App\Http\Requests\Books;
 
 use App\Enums\GenreIdType;
 use App\Interfaces\Books\StoreBookRequestInterface;
+use App\Settings\BookSetting;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBookRequest extends FormRequest implements StoreBookRequestInterface
+class StoreBookRequestV2 extends FormRequest implements StoreBookRequestInterface
 {
     public function rules(): array
     {
         return [
             'author_id' => 'required|integer|exists:authors,id',
-            'genre_id' => 'required|integer|exists:genres,id',
+            'genre_id' => 'required|string|exists:genres,slug',
             'isbn' => 'required|string|max:255',
+            'release_year' => 'required|integer',
             'title' => 'required|string|max:255',
             'cover_url' => 'required|string|max:255',
             'synopsis' => 'nullable|string',
+            'settings' => 'required|array',
+            'settings.full_synopsis' => 'required|boolean',
+            'settings.synopsis_length' => 'nullable|integer',
         ];
     }
 
@@ -29,12 +34,12 @@ class StoreBookRequest extends FormRequest implements StoreBookRequestInterface
 
     public function getGenreIdType(): GenreIdType
     {
-        return GenreIdType::ID;
+        return GenreIdType::SLUG;
     }
 
-    public function getGenreId(): int
+    public function getGenreId(): string
     {
-        return $this->integer('genre_id');
+        return $this->input('genre_id');
     }
 
     public function getIsbn(): string
@@ -44,9 +49,7 @@ class StoreBookRequest extends FormRequest implements StoreBookRequestInterface
 
     public function getReleaseYear(): ?int
     {
-        // API v1 does not have a release year field, so we return null;
-
-        return null;
+        return $this->integer('release_year');
     }
 
     public function getTitle(): string
@@ -67,8 +70,8 @@ class StoreBookRequest extends FormRequest implements StoreBookRequestInterface
     public function getSettings(): array
     {
         return [
-            'show_full_synopsis' => $this->boolean('show_full_synopsis'),
-            'synopsis_length' => $this->integer('synopsis_length'),
+            BookSetting::SHOW_FULL_SYNOPSIS->value => $this->boolean('settings.full_synopsis', true),
+            BookSetting::SYNOPSIS_LENGTH->value => $this->integer('settings.synopsis_length'),
         ];
     }
 }

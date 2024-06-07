@@ -17,7 +17,7 @@ class Book extends Model implements HasSettingsInterface, HasSettingsDecoratorIn
     use CreatesSettingsDecorators;
 
     protected $fillable = [
-        'author_id', 'genre_id', 'isbn', 'title',
+        'author_id', 'genre_id', 'isbn', 'release_year', 'title',
         'synopsis', 'cover_url', 'settings',
     ];
 
@@ -25,6 +25,7 @@ class Book extends Model implements HasSettingsInterface, HasSettingsDecoratorIn
         'author_id' => 'integer',
         'genre_id' => 'integer',
         'settings' => 'array',
+        'release_year' => 'datetime',
     ];
 
     public function getSettingsDecorator(bool $fresh = false): BookSettingsDecorator

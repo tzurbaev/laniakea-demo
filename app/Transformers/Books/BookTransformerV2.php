@@ -6,18 +6,16 @@ namespace App\Transformers\Books;
 
 use App\Models\Book;
 
-class BookTransformer extends AbstractBookTransformer
+class BookTransformerV2 extends AbstractBookTransformer
 {
     public function transform(Book $book): array
     {
         return [
-            'id' => $book->id,
-            'isbn' => $book->isbn,
+            'id' => $book->isbn,
             'title' => $book->title,
+            'release_year' => $book->release_year?->year,
             'cover_url' => $book->cover_url,
             'synopsis' => $this->getSynopsis($book),
-            'created_at' => $book->created_at->toIso8601String(),
-            'updated_at' => $book->updated_at->toIso8601String(),
         ];
     }
 }
