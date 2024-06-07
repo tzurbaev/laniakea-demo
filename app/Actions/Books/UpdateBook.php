@@ -7,11 +7,14 @@ namespace App\Actions\Books;
 use App\Http\Requests\Books\UpdateBookRequest;
 use App\Models\Book;
 use App\Repositories\BooksRepository;
+use Laniakea\Settings\Interfaces\SettingsValuesInterface;
 
 readonly class UpdateBook
 {
-    public function __construct(private BooksRepository $repository)
-    {
+    public function __construct(
+        private BooksRepository $repository,
+        private SettingsValuesInterface $settingsValues,
+    ) {
         //
     }
 
@@ -24,6 +27,10 @@ readonly class UpdateBook
             'title' => $request->getTitle(),
             'synopsis' => $request->getSynopsis(),
             'cover_url' => $request->getCoverUrl(),
+
+            // SettingsValuesInterface::getSettingsForUpdate() allows you to generate settings array for updating model
+            // Learn more: https://laniakea.zurbaev.com/settings.html#batch-actions
+            'settings' => $this->settingsValues->getSettingsForUpdate($book, $request->getSettings()),
         ]);
     }
 }

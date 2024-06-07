@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submit">
-    <div class="space-y-10 divide-y divide-gray-900/10">
-      <div v-for="section in form.sections" :key="section.id" :id="section.id" class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+    <div class="divide-y divide-gray-900/10 -my-10">
+      <div v-for="section in form.sections" :key="section.id" :id="section.id" class="py-10 grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
         <div v-if="section.label || section.description" class="px-4 sm:px-0 space-y-1">
           <h2 v-if="section.label" class="text-base font-semibold leading-7 text-gray-900">
             {{ section.label }}

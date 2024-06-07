@@ -49,4 +49,12 @@ class StoreBookRequest extends FormRequest
     {
         return $this->input('synopsis');
     }
+
+    public function getSettings(): array
+    {
+        return [
+            'show_full_synopsis' => $this->boolean('show_full_synopsis'),
+            'synopsis_length' => $this->integer('synopsis_length'),
+        ];
+    }
 }

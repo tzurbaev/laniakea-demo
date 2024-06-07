@@ -7,6 +7,7 @@ namespace App\Transformers\Books;
 use App\Models\Book;
 use App\Transformers\Authors\AuthorTransformer;
 use App\Transformers\Genres\GenreTransformer;
+use Illuminate\Support\Str;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\TransformerAbstract;
 
@@ -21,10 +22,26 @@ class BookTransformer extends TransformerAbstract
             'isbn' => $book->isbn,
             'title' => $book->title,
             'cover_url' => $book->cover_url,
-            'synopsis' => $book->synopsis,
+            'synopsis' => $this->getSynopsis($book),
             'created_at' => $book->created_at->toIso8601String(),
             'updated_at' => $book->updated_at->toIso8601String(),
         ];
+    }
+
+    /**
+     * Get synopsis based on settings.
+     *
+     * @param Book $book
+     *
+     * @return string
+     */
+    protected function getSynopsis(Book $book): string
+    {
+        if ($book->getSettingsDecorator()->showFullSynopsis()) {
+            return $book->synopsis;
+        }
+
+        return Str::limit($book->synopsis, $book->getSettingsDecorator()->getSynopsisLength());
     }
 
     public function includeAuthor(Book $book): ResourceInterface

@@ -34,6 +34,8 @@ class EditBookForm extends CreateBookForm
             'title' => $this->book->title,
             'cover_url' => $this->book->cover_url,
             'synopsis' => $this->book->synopsis,
+            'show_full_synopsis' => $this->book->getSettingsDecorator()->showFullSynopsis(),
+            'synopsis_length' => $this->book->getSettingsDecorator()->getSynopsisLength() ?? '',
         ];
     }
 }

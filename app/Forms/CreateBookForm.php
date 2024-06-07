@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
+use Laniakea\Forms\Fields\CheckboxField;
 use Laniakea\Forms\Fields\SelectField;
 use Laniakea\Forms\Fields\TextareaField;
 use Laniakea\Forms\Fields\TextField;
@@ -49,6 +50,13 @@ class CreateBookForm extends AbstractForm
             'synopsis' => (new TextareaField('Synopsis'))
                 ->setHint('Enter the synopsis of the book.')
                 ->setRows(6),
+            'show_full_synopsis' => (new CheckboxField('Show full synopsis'))
+                ->setHint('If enabled, the full synopsis will be shown on books list page.'),
+            'synopsis_length' => (new TextField('Truncated Synopsis length'))
+                ->setHint('Enter the length of the synopsis to be shown on books list page. Only works if full synopsis is disabled.')
+                ->setInputType('number')
+                ->setMinValue(0)
+                ->setStep(1),
         ];
     }
 
@@ -61,6 +69,8 @@ class CreateBookForm extends AbstractForm
             'title' => null,
             'cover_url' => null,
             'synopsis' => null,
+            'show_full_synopsis' => true,
+            'synopsis_length' => '',
         ];
     }
 
@@ -69,6 +79,7 @@ class CreateBookForm extends AbstractForm
         return [
             new FormSection(['author_id', 'genre_id'], 'Author and Genre', 'Select the author and genre of the book.'),
             new FormSection(['isbn', 'title', 'cover_url', 'synopsis'], 'Book Details', 'Enter the details of the book.'),
+            new FormSection(['show_full_synopsis', 'synopsis_length'], 'Synopsis Settings', 'Configure the synopsis settings.'),
         ];
     }
 }
