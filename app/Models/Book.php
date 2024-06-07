@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laniakea\Settings\Concerns\CreatesSettingsDecorators;
 use Laniakea\Settings\Interfaces\HasSettingsDecoratorInterface;
 use Laniakea\Settings\Interfaces\HasSettingsInterface;
-use Laniakea\Settings\Interfaces\SettingsDecoratorInterface;
 
 class Book extends Model implements HasSettingsInterface, HasSettingsDecoratorInterface
 {
