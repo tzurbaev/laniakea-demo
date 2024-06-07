@@ -16,6 +16,7 @@ class AuthorFactory extends Factory
         return [
             'name' => fake()->name,
             'photo_url' => fake()->imageUrl(),
+            'country' => fake()->country,
             'bio' => fake()->paragraph,
         ];
     }

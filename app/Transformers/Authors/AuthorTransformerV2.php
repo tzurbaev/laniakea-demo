@@ -9,7 +9,7 @@ use App\Models\Author;
 use App\Transformers\Books\BookTransformer;
 use League\Fractal\TransformerAbstract;
 
-class AuthorTransformer extends TransformerAbstract implements AuthorTransformerInterface
+class AuthorTransformerV2 extends TransformerAbstract implements AuthorTransformerInterface
 {
     protected array $availableIncludes = ['books'];
 
@@ -17,11 +17,10 @@ class AuthorTransformer extends TransformerAbstract implements AuthorTransformer
     {
         return [
             'id' => $author->id,
-            'name' => $author->name,
+            'full_name' => $author->name,
+            'country' => $author->country,
+            'biography' => $author->bio,
             'photo_url' => $author->photo_url,
-            'bio' => $author->bio,
-            'created_at' => $author->created_at->toIso8601String(),
-            'updated_at' => $author->updated_at->toIso8601String(),
         ];
     }
 

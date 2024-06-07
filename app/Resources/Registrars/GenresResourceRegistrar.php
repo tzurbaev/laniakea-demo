@@ -26,7 +26,7 @@ class GenresResourceRegistrar implements ResourceRegistrarInterface, VersionedRe
     {
         $binder->bind('v1', [
             GenreTransformerInterface::class => GenreTransformer::class,
-        ]);
+        ], isDefault: true);
 
         $binder->bind('v2', [
             GenreTransformerInterface::class => GenreTransformerV2::class,

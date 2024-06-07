@@ -7,26 +7,26 @@ namespace App\Http\Requests\Authors;
 use App\Interfaces\Authors\StoreAuthorRequestInterface;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAuthorRequest extends FormRequest implements StoreAuthorRequestInterface
+class StoreAuthorRequestV2 extends FormRequest implements StoreAuthorRequestInterface
 {
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'full_name' => 'required|string|max:255',
             'photo_url' => 'required|string|max:255',
-            'bio' => 'nullable|string',
+            'country' => 'required|string|max:255',
+            'biography' => 'nullable|string',
         ];
     }
 
     public function getAuthorName(): string
     {
-        return $this->input('name');
+        return $this->input('full_name');
     }
 
     public function getCountry(): ?string
     {
-        // API v1 does not have a country field, so we return null
-        return null;
+        return $this->input('country');
     }
 
     public function getPhotoUrl(): string
@@ -36,6 +36,6 @@ class StoreAuthorRequest extends FormRequest implements StoreAuthorRequestInterf
 
     public function getBio(): ?string
     {
-        return $this->input('bio');
+        return $this->input('biography');
     }
 }
