@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 export function useForm(props) {
-  const values = ref({});
+  const values = ref({ ...props.form.form.values });
   const submitting = ref(false);
   const submit = async () => {
     if (submitting.value) {

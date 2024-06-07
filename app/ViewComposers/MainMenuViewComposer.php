@@ -22,7 +22,7 @@ class MainMenuViewComposer
             [
                 'title' => 'Books',
                 'url' => '/',
-                'active' => false,
+                'active' => Route::is('books.*'),
             ],
             [
                 'title' => 'Authors',

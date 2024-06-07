@@ -6,7 +6,9 @@
             v-bind="field.settings?.attributes || {}"
             v-model="model"
     >
-      <option v-for="option in settings.options" :key="`Option-${option.id}`">{{ option.name }}</option>
+      <option v-for="option in field.settings.options" :key="`Option-${option.id}`" :value="option.id">
+        {{ option.name }}
+      </option>
     </select>
   </AbstractField>
 </template>
