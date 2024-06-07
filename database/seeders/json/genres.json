@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "slug": "science-fiction",
+        "name": "Science Fiction"
+    },
+    {
+        "id": 2,
+        "slug": "fantasy",
+        "name": "Fantasy"
+    },
+    {
+        "id": 3,
+        "slug": "detective",
+        "name": "Detective"
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "author_id": 1,
+        "genre_id": 1,
+        "isbn": "978-0-8041-3902-1",
+        "title": "The Martian",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/commons/7/71/The_Martian_%28Weir_novel%29.jpg",
+        "synopsis": "In the year 2035, the crew of NASA's Ares 3 mission have arrived at Acidalia Planitia for a planned month-long stay on Mars. After only six sols, an intense dust and wind storm threatens to topple their Mars Ascent Vehicle (MAV), which would trap them on the planet. During the hurried evacuation, an antenna tears loose and impales astronaut Mark Watney, a botanist and engineer, also disabling his spacesuit radio. He is flung out of sight by the wind and presumed dead. As the MAV teeters dangerously, mission commander Melissa Lewis has no choice but to take off without completing the search for Watney."
+    },
+    {
+        "id": 2,
+        "author_id": 1,
+        "genre_id": 1,
+        "isbn": "978-0-593-39556-1",
+        "title": "Project Hail Mary",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/a/ad/Project_Hail_Mary%2C_First_Edition_Cover_%282021%29.jpg",
+        "synopsis": "Set in the near future, «Project Hail Mary» centers on school-teacher-turned-astronaut Ryland Grace, who wakes up from a coma afflicted with amnesia. He gradually remembers that he was sent to the Tau Ceti solar system, 12 light-years from Earth, to find a means of reversing a solar dimming event that could cause the extinction of humanity."
+    },
+    {
+        "id": 3,
+        "author_id": 2,
+        "genre_id": 3,
+        "isbn": "978-1599866741",
+        "title": "A Study in Scarlet",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/ArthurConanDoyle_AStudyInScarlet_annual.jpg",
+        "synopsis": "A Study in Scarlet is a popular Sherlock Holmes book written by author Arthur Conan Doyle. Being the first novel is the Holmes detective series by Doyle, A Study in Scarlet largely introduces the reader to the forthcoming series by Doyle. The story features the introduction of Sherlock Holmes and Dr. Watson through mutual friends and a mystery revolving around a corpse found at a derelict house in Brixton, England."
+    },
+    {
+        "id": 4,
+        "author_id": 3,
+        "genre_id": 2,
+        "isbn": "978-0007522903",
+        "title": "The Fellowship of the Ring",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/8/8e/The_Fellowship_of_the_Ring_cover.gif",
+        "synopsis": "The Fellowship of the Ring is the first of three volumes of the epic novel The Lord of the Rings by the English author J. R. R. Tolkien. It is followed by The Two Towers and The Return of the King. The action takes place in the fictional universe of Middle-earth. The book was first published on 29 July 1954 in the United Kingdom. The volume consists of a foreword, in which the author discusses his writing of The Lord of the Rings, a prologue titled \"Concerning Hobbits, and other matters\", and the main narrative in Book I and Book II."
+    }
+]

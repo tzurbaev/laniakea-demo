@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Andy Weir",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/NASA_Journey_to_Mars_and_“The_Martian%22_%28201508180048HQ%29.jpg/440px-NASA_Journey_to_Mars_and_“The_Martian%22_%28201508180048HQ%29.jpg",
+        "bio": "Andrew Taylor Weir (born June 16, 1972) is an American novelist. His 2011 novel The Martian was adapted into the 2015 film of the same name directed by Ridley Scott. He received the John W. Campbell Award for Best New Writer in 2016 and his 2021 novel Project Hail Mary was a finalist for the 2022 Hugo Award for Best Novel."
+    },
+    {
+        "id": 2,
+        "name": "Sir Arthur Conan Doyle",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Arthur_Conan_Doyle_by_Walter_Benington%2C_1914.png",
+        "bio": "Sir Arthur Ignatius Conan Doyle (22 May 1859 – 7 July 1930) was a British writer and physician. He created the character Sherlock Holmes in 1887 for A Study in Scarlet, the first of four novels and fifty-six short stories about Holmes and Dr. Watson. The Sherlock Holmes stories are milestones in the field of crime fiction."
+    },
+    {
+        "id": 3,
+        "name": "J. R. R. Tolkien",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/J._R._R._Tolkien%2C_ca._1925.jpg/440px-J._R._R._Tolkien%2C_ca._1925.jpg",
+        "bio": "John Ronald Reuel Tolkien (January 1892 – 2 September 1973) was an English writer and philologist. He was the author of the high fantasy works The Hobbit and The Lord of the Rings."
+    }
+]
