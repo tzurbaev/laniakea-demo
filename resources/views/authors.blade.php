@@ -3,5 +3,5 @@
 @section('heading', 'Authors')
 
 @section('page')
-  <p>This is authors page.</p>
+  <authors-list></authors-list>
 @endsection

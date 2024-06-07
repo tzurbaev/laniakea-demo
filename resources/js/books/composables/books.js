@@ -23,6 +23,7 @@ export function useBooksList() {
     page: 1,
     count: 100,
     with: 'author,genre',
+    order_by: 'title',
   }));
 
   const loadBooks = async () => {

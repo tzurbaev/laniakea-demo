@@ -3,5 +3,5 @@
 @section('heading', 'Genres')
 
 @section('page')
-  <p>This is genres page.</p>
+  <genres-list></genres-list>
 @endsection

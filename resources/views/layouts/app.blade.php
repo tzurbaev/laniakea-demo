@@ -77,8 +77,7 @@
       </div>
     </nav>
 
-    <div class="py-10">
-
+    <div class="py-6">
       <header class="md:flex md:items-center md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="min-w-0 flex-1">
           <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
@@ -93,7 +92,6 @@
           </div>
         @endif
       </header>
-
 
       <main class="mt-6">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
