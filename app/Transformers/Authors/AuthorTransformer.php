@@ -7,6 +7,7 @@ namespace App\Transformers\Authors;
 use App\Interfaces\Authors\AuthorTransformerInterface;
 use App\Interfaces\Books\BookTransformerInterface;
 use App\Models\Author;
+use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\TransformerAbstract;
 
 class AuthorTransformer extends TransformerAbstract implements AuthorTransformerInterface
@@ -25,7 +26,14 @@ class AuthorTransformer extends TransformerAbstract implements AuthorTransformer
         ];
     }
 
-    public function includeBooks(Author $author)
+    /**
+     * Handle `books` inclusion.
+     *
+     * @param Author $author
+     *
+     * @return ResourceInterface
+     */
+    public function includeBooks(Author $author): ResourceInterface
     {
         if (!$author->relationLoaded('books')) {
             return $this->primitive([]);

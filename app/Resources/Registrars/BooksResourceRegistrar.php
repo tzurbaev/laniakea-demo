@@ -28,11 +28,13 @@ class BooksResourceRegistrar implements ResourceRegistrarInterface, VersionedRes
 {
     public function bindRoute(ResourceRouteBinderInterface $binder): void
     {
+        // Registers `{book}` route binding.
         $binder->bind('book', BooksResource::class, BooksRepository::class, BookNotFoundException::class);
     }
 
     public function bindVersions(VersionBinderInterface $binder): void
     {
+        // Registers version-related interfaces and implementations for API v1.
         $binder->bind('v1', [
             StoreBookRequestInterface::class => StoreBookRequest::class,
             UpdateBookRequestInterface::class => UpdateBookRequest::class,
@@ -40,6 +42,7 @@ class BooksResourceRegistrar implements ResourceRegistrarInterface, VersionedRes
             BooksGenreFilterInterface::class => BooksGenreFilter::class,
         ], isDefault: true);
 
+        // Registers version-related interfaces and implementations for API v2.
         $binder->bind('v2', [
             StoreBookRequestInterface::class => StoreBookRequestV2::class,
             UpdateBookRequestInterface::class => UpdateBookRequestV2::class,

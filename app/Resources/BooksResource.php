@@ -41,7 +41,8 @@ class BooksResource implements ResourceInterface, HasItemCriterionInterface
             'author_id' => new BooksAuthorFilter(),
 
             // Genre filter depends on current API version,
-            // so we're setting interface's class name instead of concrete implementation
+            // so we're setting interface's class name instead of concrete implementation.
+            // The `BooksResourceRegistrar` class registers the actual implementations for each API version.
             'genre_id' => BooksGenreFilterInterface::class,
         ];
     }

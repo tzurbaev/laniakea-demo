@@ -32,6 +32,13 @@ abstract class AbstractBookTransformer extends TransformerAbstract implements Bo
         return Str::limit($book->synopsis, $book->getSettingsDecorator()->getSynopsisLength());
     }
 
+    /**
+     * Handle `author` inclusion.
+     *
+     * @param Book $book
+     *
+     * @return ResourceInterface
+     */
     public function includeAuthor(Book $book): ResourceInterface
     {
         if (!$book->relationLoaded('author')) {
@@ -41,6 +48,13 @@ abstract class AbstractBookTransformer extends TransformerAbstract implements Bo
         return $this->item($book->author, app(AuthorTransformerInterface::class));
     }
 
+    /**
+     * Handle `genre` inclusion.
+     *
+     * @param Book $book
+     *
+     * @return ResourceInterface
+     */
     public function includeGenre(Book $book): ResourceInterface
     {
         if (!$book->relationLoaded('genre')) {

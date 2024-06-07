@@ -12,21 +12,40 @@ use Laniakea\Forms\FormSection;
 
 class CreateBookForm extends AbstractForm
 {
+    /**
+     * @param array $authors List of authors for select field.
+     * @param array $genres  List of genres for select field.
+     */
     public function __construct(private readonly array $authors, private readonly array $genres)
     {
         //
     }
 
+    /**
+     * HTTP method that will be used to submit the form.
+     *
+     * @return string
+     */
     public function getMethod(): string
     {
         return 'POST';
     }
 
+    /**
+     * Form submission URL.
+     *
+     * @return string
+     */
     public function getUrl(): string
     {
         return route('api.v1.books.store');
     }
 
+    /**
+     * Form fields.
+     *
+     * @return array
+     */
     public function getFields(): array
     {
         return [
@@ -60,6 +79,11 @@ class CreateBookForm extends AbstractForm
         ];
     }
 
+    /**
+     * Form values.
+     *
+     * @return array
+     */
     public function getValues(): array
     {
         return [
@@ -74,6 +98,11 @@ class CreateBookForm extends AbstractForm
         ];
     }
 
+    /**
+     * Form sections.
+     *
+     * @return array
+     */
     public function getSections(): array
     {
         return [

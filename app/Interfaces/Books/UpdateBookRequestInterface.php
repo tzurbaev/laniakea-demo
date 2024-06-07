@@ -8,5 +8,10 @@ use App\Models\Book;
 
 interface UpdateBookRequestInterface extends StoreBookRequestInterface
 {
+    /**
+     * Get current book.
+     *
+     * @return Book
+     */
     public function getBook(): Book;
 }

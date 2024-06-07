@@ -8,5 +8,12 @@ use App\Models\Book;
 
 interface BookTransformerInterface
 {
+    /**
+     * Transform the book model.
+     *
+     * @param Book $book
+     *
+     * @return array
+     */
     public function transform(Book $book): array;
 }

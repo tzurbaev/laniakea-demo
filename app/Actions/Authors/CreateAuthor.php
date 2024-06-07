@@ -15,6 +15,13 @@ readonly class CreateAuthor
         //
     }
 
+    /**
+     * Create new author.
+     *
+     * @param StoreAuthorRequestInterface $request
+     *
+     * @return Author
+     */
     public function create(StoreAuthorRequestInterface $request): Author
     {
         return $this->repository->create([

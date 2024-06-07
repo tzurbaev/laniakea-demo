@@ -14,6 +14,11 @@ readonly class BookItemCriterion implements RepositoryCriterionInterface
         //
     }
 
+    /**
+     * This custom criterion is used by BooksResource, so we can use book's ISBN as route key instead of integer ID.
+     *
+     * @param Builder $query
+     */
     public function apply(Builder $query): void
     {
         $query->where('isbn', $this->isbn);

@@ -29,6 +29,7 @@ class StoreBookRequest extends FormRequest implements StoreBookRequestInterface
 
     public function getGenreIdType(): GenreIdType
     {
+        // API v1 expects `genre_id` to be an integer, so we return `ID` case here.
         return GenreIdType::ID;
     }
 

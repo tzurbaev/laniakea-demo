@@ -11,6 +11,13 @@ use Laniakea\Resources\Interfaces\ResourceFilterInterface;
 
 class BooksGenreFilter implements ResourceFilterInterface, BooksGenreFilterInterface
 {
+    /**
+     * This filter is used in API v1 to filter books by genre ID.
+     *
+     * @param RepositoryQueryBuilderInterface $query
+     * @param mixed                           $value
+     * @param array                           $values
+     */
     public function apply(RepositoryQueryBuilderInterface $query, mixed $value, array $values): void
     {
         if (!is_numeric($value)) {

@@ -8,16 +8,29 @@ use App\Models\Book;
 
 class EditBookForm extends CreateBookForm
 {
+    /**
+     * @param Book $book Book to be edited.
+     */
     public function __construct(private readonly Book $book, array $authors, array $genres)
     {
         parent::__construct($authors, $genres);
     }
 
+    /**
+     * HTTP method that will be used to submit the form.
+     *
+     * @return string
+     */
     public function getMethod(): string
     {
         return 'PUT';
     }
 
+    /**
+     * Form submission URL.
+     *
+     * @return string
+     */
     public function getUrl(): string
     {
         return route('api.v1.books.update', [
@@ -25,6 +38,11 @@ class EditBookForm extends CreateBookForm
         ]);
     }
 
+    /**
+     * Form values.
+     *
+     * @return array
+     */
     public function getValues(): array
     {
         return [

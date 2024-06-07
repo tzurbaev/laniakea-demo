@@ -8,5 +8,12 @@ use App\Models\Genre;
 
 interface GenreTransformerInterface
 {
+    /**
+     * Transform the genre model.
+     *
+     * @param Genre $genre
+     *
+     * @return array
+     */
     public function transform(Genre $genre): array;
 }

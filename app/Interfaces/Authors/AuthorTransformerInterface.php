@@ -8,5 +8,12 @@ use App\Models\Author;
 
 interface AuthorTransformerInterface
 {
+    /**
+     * Transform the author model.
+     *
+     * @param Author $author
+     *
+     * @return array
+     */
     public function transform(Author $author): array;
 }

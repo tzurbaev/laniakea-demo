@@ -21,6 +21,13 @@ class GenresRepository extends AbstractRepository
         return Genre::class;
     }
 
+    /**
+     * Try to find genre by the given slug.
+     *
+     * @param string|null $slug
+     *
+     * @return Genre|null
+     */
     public function getGenreBySlug(?string $slug): ?Genre
     {
         if (is_null($slug)) {

@@ -14,6 +14,11 @@ readonly class GenreItemCriterion implements RepositoryCriterionInterface
         //
     }
 
+    /**
+     * This custom criterion is used by GenresResource, so we can use genre's slug as route key instead of integer ID.
+     *
+     * @param Builder $query
+     */
     public function apply(Builder $query): void
     {
         $query->where('slug', $this->slug);

@@ -22,16 +22,19 @@ class AuthorsResourceRegistrar implements ResourceRegistrarInterface, VersionedR
 {
     public function bindRoute(ResourceRouteBinderInterface $binder): void
     {
+        // Registers `{author}` route binding.
         $binder->bind('author', AuthorsResource::class, AuthorsRepository::class, AuthorNotFoundException::class);
     }
 
     public function bindVersions(VersionBinderInterface $binder): void
     {
+        // Registers version-related interfaces and implementations for API v1.
         $binder->bind('v1', [
             StoreAuthorRequestInterface::class => StoreAuthorRequest::class,
             AuthorTransformerInterface::class => AuthorTransformer::class,
         ], isDefault: true);
 
+        // Registers version-related interfaces and implementations for API v2.
         $binder->bind('v2', [
             StoreAuthorRequestInterface::class => StoreAuthorRequestV2::class,
             AuthorTransformerInterface::class => AuthorTransformerV2::class,

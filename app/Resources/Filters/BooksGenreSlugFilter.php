@@ -13,11 +13,21 @@ use Laniakea\Resources\Interfaces\ResourceFilterInterface;
 
 readonly class BooksGenreSlugFilter implements ResourceFilterInterface, BooksGenreFilterInterface
 {
+    /**
+     * @param GenresRepository $repository Laniakea will auto-inject this repository with the help of Laravel.
+     */
     public function __construct(private GenresRepository $repository)
     {
         //
     }
 
+    /**
+     * This filter is used in API v2 to filter books by genre slug.
+     *
+     * @param RepositoryQueryBuilderInterface $query
+     * @param mixed                           $value
+     * @param array                           $values
+     */
     public function apply(RepositoryQueryBuilderInterface $query, mixed $value, array $values): void
     {
         if (empty($value)) {

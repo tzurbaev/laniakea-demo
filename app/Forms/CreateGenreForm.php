@@ -9,16 +9,31 @@ use Laniakea\Forms\FormSection;
 
 class CreateGenreForm extends AbstractForm
 {
+    /**
+     * HTTP method that will be used to submit the form.
+     *
+     * @return string
+     */
     public function getMethod(): string
     {
         return 'POST';
     }
 
+    /**
+     * Form submission URL.
+     *
+     * @return string
+     */
     public function getUrl(): string
     {
         return route('api.v1.genres.store');
     }
 
+    /**
+     * Form fields.
+     *
+     * @return array
+     */
     public function getFields(): array
     {
         return [
@@ -28,6 +43,11 @@ class CreateGenreForm extends AbstractForm
         ];
     }
 
+    /**
+     * Form values.
+     *
+     * @return array
+     */
     public function getValues(): array
     {
         return [
@@ -35,6 +55,11 @@ class CreateGenreForm extends AbstractForm
         ];
     }
 
+    /**
+     * Form sections.
+     *
+     * @return array
+     */
     public function getSections(): array
     {
         return [

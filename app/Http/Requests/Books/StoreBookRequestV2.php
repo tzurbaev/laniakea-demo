@@ -34,6 +34,7 @@ class StoreBookRequestV2 extends FormRequest implements StoreBookRequestInterfac
 
     public function getGenreIdType(): GenreIdType
     {
+        // API v2 expects `genre_id` to be a slug, so we return `SLUG` case here.
         return GenreIdType::SLUG;
     }
 

@@ -25,6 +25,13 @@ class GenreTransformer extends TransformerAbstract implements GenreTransformerIn
         ];
     }
 
+    /**
+     * Handle `books` inclusion.
+     *
+     * @param Genre $genre
+     *
+     * @return ResourceInterface
+     */
     public function includeBooks(Genre $genre): ResourceInterface
     {
         if (!$genre->relationLoaded('books')) {

@@ -13,8 +13,6 @@ class MainMenuViewComposer
      * Pass main menu to the resources/views/layouts/app.blade.php template.
      *
      * @param View $view
-     *
-     * @return void
      */
     public function compose(View $view): void
     {

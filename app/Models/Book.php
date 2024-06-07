@@ -28,21 +28,43 @@ class Book extends Model implements HasSettingsInterface, HasSettingsDecoratorIn
         'release_year' => 'datetime',
     ];
 
+    /**
+     * Get settings decorator.
+     *
+     * @param bool $fresh
+     *
+     * @return BookSettingsDecorator
+     */
     public function getSettingsDecorator(bool $fresh = false): BookSettingsDecorator
     {
         return $this->makeSettingsDecorator(BookSettingsDecorator::class, $fresh);
     }
 
+    /**
+     * Get settings enum class name.
+     *
+     * @return string
+     */
     public function getSettingsEnum(): string
     {
         return BookSetting::class;
     }
 
+    /**
+     * Get current model settings.
+     *
+     * @return array|null
+     */
     public function getCurrentSettings(): ?array
     {
         return $this->settings;
     }
 
+    /**
+     * Write settings to database.
+     *
+     * @param array $settings
+     */
     public function updateSettings(array $settings): void
     {
         $this->update(['settings' => $settings]);

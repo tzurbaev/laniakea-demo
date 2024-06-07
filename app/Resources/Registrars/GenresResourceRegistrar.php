@@ -19,15 +19,18 @@ class GenresResourceRegistrar implements ResourceRegistrarInterface, VersionedRe
 {
     public function bindRoute(ResourceRouteBinderInterface $binder): void
     {
+        // Registers `{genre}` route binding.
         $binder->bind('genre', GenresResource::class, GenresRepository::class, GenreNotFoundException::class);
     }
 
     public function bindVersions(VersionBinderInterface $binder): void
     {
+        // Registers version-related interfaces and implementations for API v1.
         $binder->bind('v1', [
             GenreTransformerInterface::class => GenreTransformer::class,
         ], isDefault: true);
 
+        // Registers version-related interfaces and implementations for API v2.
         $binder->bind('v2', [
             GenreTransformerInterface::class => GenreTransformerV2::class,
         ]);

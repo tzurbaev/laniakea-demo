@@ -9,6 +9,14 @@ use App\Models\Book;
 
 readonly class UpdateBook extends AbstractBookAction
 {
+    /**
+     * Update given book.
+     *
+     * @param UpdateBookRequestInterface $request
+     * @param Book                       $book
+     *
+     * @return Book
+     */
     public function update(UpdateBookRequestInterface $request, Book $book): Book
     {
         return $this->repository->update($book->id, [

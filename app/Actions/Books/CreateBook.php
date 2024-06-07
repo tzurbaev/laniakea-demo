@@ -10,6 +10,13 @@ use App\Settings\BookSetting;
 
 readonly class CreateBook extends AbstractBookAction
 {
+    /**
+     * Create new book.
+     *
+     * @param StoreBookRequestInterface $request
+     *
+     * @return Book
+     */
     public function create(StoreBookRequestInterface $request): Book
     {
         return $this->repository->create([

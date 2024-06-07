@@ -10,16 +10,31 @@ use Laniakea\Forms\FormSection;
 
 class CreateAuthorForm extends AbstractForm
 {
+    /**
+     * HTTP method that will be used to submit the form.
+     *
+     * @return string
+     */
     public function getMethod(): string
     {
         return 'POST';
     }
 
+    /**
+     * Form submission URL.
+     *
+     * @return string
+     */
     public function getUrl(): string
     {
         return route('api.v1.authors.store');
     }
 
+    /**
+     * Form fields.
+     *
+     * @return array
+     */
     public function getFields(): array
     {
         return [
@@ -35,6 +50,11 @@ class CreateAuthorForm extends AbstractForm
         ];
     }
 
+    /**
+     * Form values.
+     *
+     * @return array
+     */
     public function getValues(): array
     {
         return [
@@ -44,6 +64,11 @@ class CreateAuthorForm extends AbstractForm
         ];
     }
 
+    /**
+     * Form sections.
+     *
+     * @return array
+     */
     public function getSections(): array
     {
         return [

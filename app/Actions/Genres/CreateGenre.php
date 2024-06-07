@@ -16,6 +16,13 @@ readonly class CreateGenre
         //
     }
 
+    /**
+     * Create new genre.
+     *
+     * @param StoreGenreRequest $request
+     *
+     * @return Genre
+     */
     public function create(StoreGenreRequest $request): Genre
     {
         return $this->repository->create([
