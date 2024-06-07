@@ -78,13 +78,23 @@
     </nav>
 
     <div class="py-10">
-      <header>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">
+
+      <header class="md:flex md:items-center md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="min-w-0 flex-1">
+          <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
             @yield('heading', 'Home')
-          </h1>
+          </h2>
         </div>
+        @if (isset($button))
+          <div class="mt-4 flex md:ml-4 md:mt-0">
+            <primary-button href="{{ $button['url'] }}">
+              {{ $button['label'] }}
+            </primary-button>
+          </div>
+        @endif
       </header>
+
+
       <main class="mt-6">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
           @yield('page')

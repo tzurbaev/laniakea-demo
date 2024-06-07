@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Forms\CreateGenreForm;
+use App\Forms\CreateAuthorForm;
 use Illuminate\View\View;
 use Laniakea\Forms\Interfaces\FormsManagerInterface;
 
-class GenresController
+class AuthorsController
 {
     public function index(): View
     {
-        return view('genres', [
+        return view('authors', [
             'button' => [
-                'url' => route('genres.create'),
-                'label' => 'Create Genre',
+                'url' => route('authors.create'),
+                'label' => 'Create Author',
             ],
         ]);
     }
@@ -23,8 +23,8 @@ class GenresController
     public function create(FormsManagerInterface $formsManager): View
     {
         return view('create', [
-            'heading' => 'Create New Genre',
-            'form' => $formsManager->getFormJson(new CreateGenreForm()),
+            'heading' => 'Create New Author',
+            'form' => $formsManager->getFormJson(new CreateAuthorForm()),
         ]);
     }
 }

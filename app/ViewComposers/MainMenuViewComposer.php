@@ -27,7 +27,7 @@ class MainMenuViewComposer
             [
                 'title' => 'Authors',
                 'url' => '/authors',
-                'active' => false,
+                'active' => Route::is('authors.*'),
             ],
             [
                 'title' => 'Genres',
