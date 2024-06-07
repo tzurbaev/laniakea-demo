@@ -17,6 +17,7 @@ class GenreTransformer extends TransformerAbstract
     {
         return [
             'id' => $genre->id,
+            'slug' => $genre->slug,
             'name' => $genre->name,
             'created_at' => $genre->created_at->toIso8601String(),
             'updated_at' => $genre->updated_at->toIso8601String(),
