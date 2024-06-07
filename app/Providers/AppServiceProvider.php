@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\ViewComposers\MainMenuViewComposer;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Register the main menu view composer.
+        View::composer('layouts.app', MainMenuViewComposer::class);
     }
 }
