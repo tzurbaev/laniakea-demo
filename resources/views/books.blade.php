@@ -3,5 +3,5 @@
 @section('heading', 'Books')
 
 @section('page')
-  <p>This is books page.</p>
+  <books-list :authors="{{ json_encode($authors) }}" :genres="{{ json_encode($genres) }}"></books-list>
 @endsection

@@ -12,13 +12,17 @@ use Laniakea\Forms\Interfaces\FormsManagerInterface;
 
 class BooksController
 {
-    public function index(): View
-    {
+    public function index(
+        AuthorsRepository $authorsRepository,
+        GenresRepository $genresRepository,
+    ): View {
         return view('books', [
             'button' => [
                 'url' => route('books.create'),
                 'label' => 'Create Book',
             ],
+            'authors' => $authorsRepository->getOptionsList(),
+            'genres' => $genresRepository->getOptionsList(),
         ]);
     }
 
