@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laniakea Demo
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is demo Laravel 11 application that uses `laniakea/laniakea` package.
 
-## About Laravel
+[Learn more about Laniakea](https://laniakea.zurbaev.com).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This application requries PHP 8.2+ and Node 18+. It also uses sqlite database with demo content.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation
 
-## Learning Laravel
+```bash
+# Clone the repository
+git clone https://github.com/tzurbaev/laniakea-demo.git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Install dependencies
+cd laniakea-demo
+composer install
+npm install
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Build assets
+npm run build # or start development server with `npm run dev`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Copy .env.example to .env
+cp .env.example .env
 
-## Laravel Sponsors
+# Create empty sqlite database
+touch database/database.sqlite
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Run migrations
+php artisan migrate
 
-### Premium Partners
+# Run seeders
+php artisan db:seed
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Start built-in server
+php artisan serve # or create Valet link with `valet link`
+```
 
-## Contributing
+## What's inside
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+This is a books database application where you can create authors, genres, and books.
 
-## Code of Conduct
+It uses all Laniakea features, including [resources](https://laniakea.zurbaev.com/resources.html),
+[repositories](https://laniakea.zurbaev.com/repositories.html), [API versions](https://laniakea.zurbaev.com/resources/versions.html),
+[model settings](https://laniakea.zurbaev.com/settings.html), and [forms](https://laniakea.zurbaev.com/forms.html).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## API
 
-## Security Vulnerabilities
+This application has a simple API that allows you to paginate, create, and show app resources (authors, books, and genres). 
+Books API also supports editing.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+All API routes are described inside `routes/api.php` file. It contains two API versions (`v1` and `v2`) that are
+available at `http://localhost:8000/api/v1` and `http://localhost:8000/api/v2` respectively.
+
+## Filters
+
+Authors, Genres, and Books resources all support several filters. Check respective classes (inside `app/Resources` directory)
+to see available filters.
+
+## Directory structure
+
+All application code is located inside `app` directory. It contains the following subdirectories:
+
+- `Actions` – contains actions that are used in controllers (create or update models);
+- `Enums` – contains enums that are used in application;
+- `Exceptions` – contains custom [exceptions](https://laniakea.zurbaev.com/exceptions.html);
+- `Forms` – contains [form](https://laniakea.zurbaev.com/forms.html) classes that are used on frontend;
+- `Http` – contains controllers and requests;
+- `Interfaces` – contains interfaces that are used for [API versioning](https://laniakea.zurbaev.com/resources/versions.html);
+- `Models` – contains Eloquent models;
+- `Repositories` – contains Laniakea [repositories](https://laniakea.zurbaev.com/repositories.html) and
+[criteria](https://laniakea.zurbaev.com/repositories/criteria.html);
+- `Resources` – contains Laniakea [resources](https://laniakea.zurbaev.com/resources.html),
+[filters](https://laniakea.zurbaev.com/resources/filters.html), and [resource registrars](https://laniakea.zurbaev.com/resources/registrars.html);
+- `Settings` – contains Laniakea [model settings](https://laniakea.zurbaev.com/settings.html);
+- `Transformers` – contains transformers that are used in APIs
+([Fractal](https://fractal.thephpleague.com) & [`spatie/laravel-fractal`](https://github.com/spatie/laravel-fractal));
+- `ViewComposers` – contains view composers that are used in Blade templates.
+
+## Frontend
+
+Frontend is powered by simple [Vue 3](https://vuejs.org) application with [Tailwind CSS](https://tailwindcss.com) styles and a few
+[Tailwind UI](https://tailwindui.com) components.
+
+Check `resources/js` directory to see all frontend code.
+
+## Tests
+
+This application has tests (Pest) that cover versioned API routes. You can run them with the following command:
+
+```bash
+php artisan test
+```
+
+## Commits history
+
+This repository contains a history of commits that show how the application was built step by step. You can check them to see
+how Laniakea features were implemented and/or refactored.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The MIT License (MIT). Please see [License File](./LICENSE.md) for more information.
