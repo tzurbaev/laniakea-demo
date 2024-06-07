@@ -27,6 +27,7 @@ Route::group(['middleware' => ['laniakea.request'], 'as' => 'api.'], function ()
             Route::get('/', [BooksApiController::class, 'index'])->name('index');
             Route::post('/', [BooksApiController::class, 'store'])->name('store');
             Route::get('/{book}', [BooksApiController::class, 'show'])->name('show');
+            Route::put('/{book}', [BooksApiController::class, 'update'])->name('update');
         });
     });
 });

@@ -23,7 +23,9 @@
           </span>
           <p class="text-sm"><strong>{{ book.author.name }}</strong></p>
           <h2 class="mb-2 text-3xl font-extrabold">
-            {{ book.title }}
+            <a :href="`/books/${book.isbn}/edit`" class="underline">
+              {{ book.title }}
+            </a>
           </h2>
           <p class="text-sm">{{ book.synopsis }}</p>
           <div class="mt-6 text-xs flex flex-1 flex-col justify-end gap-y-2">

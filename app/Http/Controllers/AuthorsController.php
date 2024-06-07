@@ -22,7 +22,7 @@ class AuthorsController
 
     public function create(FormsManagerInterface $formsManager): View
     {
-        return view('create', [
+        return view('form', [
             'heading' => 'Create New Author',
             'form' => $formsManager->getFormJson(new CreateAuthorForm()),
         ]);

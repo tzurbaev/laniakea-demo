@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Books\CreateBook;
+use App\Actions\Books\UpdateBook;
 use App\Http\Requests\Books\StoreBookRequest;
+use App\Http\Requests\Books\UpdateBookRequest;
 use App\Models\Book;
 use App\Repositories\BooksRepository;
 use App\Resources\BooksResource;
@@ -36,5 +38,12 @@ class BooksApiController
     public function show(Book $book): JsonResponse
     {
         return response()->json($book);
+    }
+
+    public function update(UpdateBookRequest $request, UpdateBook $action): JsonResponse
+    {
+        return response()->json(
+            $action->update($request, $request->getBook()),
+        );
     }
 }

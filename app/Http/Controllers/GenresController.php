@@ -22,7 +22,7 @@ class GenresController
 
     public function create(FormsManagerInterface $formsManager): View
     {
-        return view('create', [
+        return view('form', [
             'heading' => 'Create New Genre',
             'form' => $formsManager->getFormJson(new CreateGenreForm()),
         ]);
