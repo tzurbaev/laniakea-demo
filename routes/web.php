@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenresController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +11,7 @@ Route::get('/authors', function () {
     return view('authors');
 });
 
-Route::get('/genres', function () {
-    return view('genres');
+Route::group(['prefix' => '/genres', 'as' => 'genres.'], function () {
+    Route::get('/', [GenresController::class, 'index'])->name('index');
+    Route::get('/create', [GenresController::class, 'create'])->name('create');
 });
