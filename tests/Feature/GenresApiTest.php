@@ -21,6 +21,19 @@ it('should create genres via v1 API', function () {
     expect(Genre::count())->toBe(1);
 });
 
+it('should create genres via v2 API', function () {
+    expect(Genre::count())->toBe(0);
+
+    $this->postJson(route('api.v2.genres.store'), ['name' => 'Science Fiction'])
+        ->assertStatus(200)
+        ->assertJsonFragment([
+            'id' => 'science-fiction',
+            'name' => 'Science Fiction',
+        ]);
+
+    expect(Genre::count())->toBe(1);
+});
+
 it('should list genres via v1 API', function () {
     $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
     $fantasy = Genre::create(['slug' => Str::slug('Fantasy'), 'name' => 'Fantasy']);
@@ -38,6 +51,25 @@ it('should list genres via v1 API', function () {
         ->assertJsonFragment([
             'id' => $fantasy->id,
             'slug' => $fantasy->slug,
+            'name' => $fantasy->name,
+        ]);
+});
+
+it('should list genres via v2 API', function () {
+    $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
+    $fantasy = Genre::create(['slug' => Str::slug('Fantasy'), 'name' => 'Fantasy']);
+
+    expect(Genre::count())->toBe(2);
+
+    $this->getJson(route('api.v2.genres.index'))
+        ->assertStatus(200)
+        ->assertJsonCount(2, 'data')
+        ->assertJsonFragment([
+            'id' => $sciFi->slug,
+            'name' => $sciFi->name,
+        ])
+        ->assertJsonFragment([
+            'id' => $fantasy->slug,
             'name' => $fantasy->name,
         ]);
 });
@@ -63,6 +95,25 @@ it('should paginate genres via v1 API', function () {
         ]);
 });
 
+it('should paginate genres via v2 API', function () {
+    $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
+    $fantasy = Genre::create(['slug' => Str::slug('Fantasy'), 'name' => 'Fantasy']);
+
+    expect(Genre::count())->toBe(2);
+
+    $this->getJson(route('api.v2.genres.index', ['page' => 2, 'count' => 1]))
+        ->assertStatus(200)
+        ->assertJsonCount(1, 'data')
+        ->assertJsonMissing([
+            'id' => $sciFi->slug,
+            'name' => $sciFi->name,
+        ])
+        ->assertJsonFragment([
+            'id' => $fantasy->slug,
+            'name' => $fantasy->name,
+        ]);
+});
+
 it('should filter genres with search filter via v1 API', function () {
     $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
     $fantasy = Genre::create(['slug' => Str::slug('Fantasy'), 'name' => 'Fantasy']);
@@ -80,6 +131,25 @@ it('should filter genres with search filter via v1 API', function () {
         ->assertJsonMissing([
             'id' => $fantasy->id,
             'slug' => $fantasy->slug,
+            'name' => $fantasy->name,
+        ]);
+});
+
+it('should filter genres with search filter via v2 API', function () {
+    $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
+    $fantasy = Genre::create(['slug' => Str::slug('Fantasy'), 'name' => 'Fantasy']);
+
+    expect(Genre::count())->toBe(2);
+
+    $this->getJson(route('api.v2.genres.index', ['search' => 'fiction']))
+        ->assertStatus(200)
+        ->assertJsonCount(1, 'data')
+        ->assertJsonFragment([
+            'id' => $sciFi->slug,
+            'name' => $sciFi->name,
+        ])
+        ->assertJsonMissing([
+            'id' => $fantasy->slug,
             'name' => $fantasy->name,
         ]);
 });
@@ -107,6 +177,29 @@ it('should sort genres via v1 API', function () {
         ->and($response->data[1]->id)->toBe($fantasy->id);
 });
 
+it('should sort genres via v2 API', function () {
+    $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
+    $fantasy = Genre::create(['slug' => Str::slug('Fantasy'), 'name' => 'Fantasy']);
+
+    expect(Genre::count())->toBe(2);
+
+    $response = $this->getJson(route('api.v2.genres.index', ['order_by' => 'name']))
+        ->assertStatus(200)
+        ->assertJsonCount(2, 'data')
+        ->getOriginalContent();
+
+    expect($response->data[0]->id)->toBe($fantasy->slug)
+        ->and($response->data[1]->id)->toBe($sciFi->slug);
+
+    $response = $this->getJson(route('api.v2.genres.index', ['order_by' => '-name']))
+        ->assertStatus(200)
+        ->assertJsonCount(2, 'data')
+        ->getOriginalContent();
+
+    expect($response->data[0]->id)->toBe($sciFi->slug)
+        ->and($response->data[1]->id)->toBe($fantasy->slug);
+});
+
 it('should show genres by ID via v1 API', function () {
     $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
 
@@ -118,6 +211,20 @@ it('should show genres by ID via v1 API', function () {
         ->assertJsonFragment([
             'id' => $sciFi->id,
             'slug' => $sciFi->slug,
+            'name' => $sciFi->name,
+        ]);
+});
+
+it('should show genres by ID via v2 API', function () {
+    $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
+
+    expect(Genre::count())->toBe(1);
+
+    // Genres are identified by slug, not by ID.
+    $this->getJson(route('api.v2.genres.show', ['genre' => $sciFi->slug]))
+        ->assertStatus(200)
+        ->assertJsonFragment([
+            'id' => $sciFi->slug,
             'name' => $sciFi->name,
         ]);
 });

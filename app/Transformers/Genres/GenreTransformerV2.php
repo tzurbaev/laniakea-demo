@@ -10,18 +10,15 @@ use App\Transformers\Books\BookTransformer;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\TransformerAbstract;
 
-class GenreTransformer extends TransformerAbstract implements GenreTransformerInterface
+class GenreTransformerV2 extends TransformerAbstract implements GenreTransformerInterface
 {
     protected array $availableIncludes = ['books'];
 
     public function transform(Genre $genre): array
     {
         return [
-            'id' => $genre->id,
-            'slug' => $genre->slug,
+            'id' => $genre->slug,
             'name' => $genre->name,
-            'created_at' => $genre->created_at->toIso8601String(),
-            'updated_at' => $genre->updated_at->toIso8601String(),
         ];
     }
 

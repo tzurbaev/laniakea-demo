@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Transformers\Books;
 
+use App\Interfaces\Genres\GenreTransformerInterface;
 use App\Models\Book;
 use App\Transformers\Authors\AuthorTransformer;
-use App\Transformers\Genres\GenreTransformer;
 use Illuminate\Support\Str;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\TransformerAbstract;
@@ -59,6 +59,6 @@ class BookTransformer extends TransformerAbstract
             return $this->primitive(null);
         }
 
-        return $this->item($book->genre, new GenreTransformer());
+        return $this->item($book->genre, app(GenreTransformerInterface::class));
     }
 }

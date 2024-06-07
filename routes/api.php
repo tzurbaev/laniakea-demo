@@ -30,4 +30,13 @@ Route::group(['middleware' => ['laniakea.request'], 'as' => 'api.'], function ()
             Route::put('/{book}', [BooksApiController::class, 'update'])->name('update');
         });
     });
+
+    // Those are routes for API v2.
+    Route::group(['prefix' => '/v2', 'middleware' => ['laniakea.version:v2'], 'as' => 'v2.'], function () {
+        Route::group(['prefix' => '/genres', 'as' => 'genres.'], function () {
+            Route::get('/', [GenresApiController::class, 'index'])->name('index');
+            Route::post('/', [GenresApiController::class, 'store'])->name('store');
+            Route::get('/{genre}', [GenresApiController::class, 'show'])->name('show');
+        });
+    });
 });
