@@ -200,7 +200,7 @@ it('should sort genres via v2 API', function () {
         ->and($response->data[1]->id)->toBe($fantasy->slug);
 });
 
-it('should show genres by ID via v1 API', function () {
+it('should show genres by slug via v1 API', function () {
     $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
 
     expect(Genre::count())->toBe(1);
@@ -215,7 +215,7 @@ it('should show genres by ID via v1 API', function () {
         ]);
 });
 
-it('should show genres by ID via v2 API', function () {
+it('should show genres by slug via v2 API', function () {
     $sciFi = Genre::create(['slug' => Str::slug('Science Fiction'), 'name' => 'Science Fiction']);
 
     expect(Genre::count())->toBe(1);
